@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Dashboard</title>
+    <meta name="description"
+        content="Real-time crypto portfolio dashboard with live prices, P&L tracking, and AI outlook.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>x1</h1>
+            <div class="last-updated">
+                <span id="last-updated-text">Loading...</span>
+                <button class="refresh-btn" onclick="manualRefresh()" id="refresh-btn">
+                    <span id="refresh-icon">↻</span> Refresh
+                </button>
+            </div>
+        </header>
+
+        <div id="error-message"></div>
+
+        <!-- Summary Cards -->
+        <div id="summary-section" class="summary-cards" style="display: none;">
+            <div class="summary-card">
+                <div class="label">Total Portfolio Value</div>
+                <div class="value" id="total-value">—</div>
+            </div>
+            <div class="summary-card">
+                <div class="label">Unrealized P&L</div>
+                <div class="value" id="total-pnl">—</div>
+                <div class="sub" id="total-pnl-pct"></div>
+            </div>
+            <div class="summary-card">
+                <div class="label">24h Change</div>
+                <div class="value" id="change-24h">—</div>
+                <div class="sub" id="change-24h-pct"></div>
+            </div>
+        </div>
+
+        <!-- Spot Assets -->
+        <div id="spot-section" class="section" style="display: none;">
+            <h2 class="section-title">Spot Assets</h2>
+            <div class="table-container">
+                <table id="spot-assets"></table>
+            </div>
+        </div>
+
+        <!-- Derivative Positions -->
+        <div id="derivative-section" class="section" style="display: none;">
+            <h2 class="section-title">Derivative Positions</h2>
+            <div class="table-container">
+                <table id="derivative-assets"></table>
+            </div>
+        </div>
+
+        <!-- Suggested Trades -->
+        <div id="trades-section" class="section" style="display: none;">
+            <h2 class="section-title">Suggested Trades</h2>
+            <div class="table-container">
+                <table id="suggested-trades"></table>
+            </div>
+        </div>
+
+        <!-- AI Outlook -->
+        <div id="outlook-section" class="section" style="display: none;">
+            <h2 class="section-title">AI Outlook</h2>
+            <div id="ai-outlook" class="asset-grid"></div>
+        </div>
+    </div>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="modal" onclick="closeModal()">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImage">
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

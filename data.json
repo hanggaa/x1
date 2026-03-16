@@ -1,0 +1,67 @@
+{
+  "lastUpdated": "2026-02-28T04:09:24.757Z",
+  "portfolio": {
+    "spot": [
+      {
+        "id": "1770310581225",
+        "icon": "https://assets.coingecko.com/coins/images/1/standard/bitcoin.png?1696501400",
+        "name": "Bitcoin",
+        "exchange": "Treasury-1",
+        "amount": 1709216,
+        "avgPrice": 3081
+      }
+    ],
+    "derivative": [
+      {
+        "id": "1770310780068",
+        "icon": "https://assets.coingecko.com/coins/images/1/standard/bitcoin.png?1696501400",
+        "name": "Bitcoin",
+        "exchange": "Vault-1",
+        "size": -838266.4400,
+        "opening": 94691,
+        "stop": null,
+        "limit": null
+      }
+    ]
+  },
+  "suggestedTrades": [
+    {
+      "id": "1770266469963",
+      "market": "Japan 225",
+      "direction": "BUY",
+      "duration": "Intraday",
+      "published": "2026-02-05T11:41",
+      "updated": "2026-02-05T11:41"
+    },
+    {
+      "id": "1770266626937",
+      "market": "Hong Kong HS50",
+      "direction": "BUY",
+      "duration": "Intraday",
+      "published": "2026-02-05T11:43",
+      "updated": "2026-02-05T11:43"
+    },
+    {
+      "id": "1770266776859",
+      "market": "US 500",
+      "direction": "SELL",
+      "duration": "Short term",
+      "published": "2026-02-05T11:46",
+      "updated": "2026-02-05T11:46"
+    }
+  ],
+  "aiOutlook": [
+    {
+      "id": "1770266794146",
+      "imageUrl": "https://iglive.autochartist.com/ssresearch/reports/IGIndices_607618216402352501.png",
+      "published": "2026-02-05T11:46",
+      "updated": "2026-02-05T11:46"
+    },
+    {
+      "id": "1770266822521",
+      "imageUrl": "https://d1qy5bkp2phnxs.cloudfront.net/charts/pia-chart/HSI_2026-02-04_21-09-59_9470169837e87-0dc4-4a9b-9dc0-0b2e3f6e2587-resize-400x300-69837e884271e-small.png",
+      "published": "2026-02-05T11:46",
+      "updated": "2026-02-05T11:47"
+    }
+  ]
+}
