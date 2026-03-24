@@ -1,7 +1,7 @@
 // ============================================
 // CONFIGURATION
 // ============================================
-const JSON_DATA_URL = 'https://ltiqecfua73nfu7wdbqlu74vefqxkbpdgork4aileh24byrj2era.arweave.net/XNECCLQH9tLT9hhgun-VIWF1BeMzoq4BCyH1wOIp0SI';
+const JSON_DATA_URL = 'https://2ujyz7wilgpxcgoa753pqbwkivdi3wd746gahqe6ygbjwmdwmx4a.arweave.net/1ROM_shZn3EZwP92-AbKRUaN2H_njAPAnsGCmzB2Zfg';
 
 let portfolioData = null;
 let refreshInterval = null;
