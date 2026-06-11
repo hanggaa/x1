@@ -1,5 +1,5 @@
 {
-  "lastUpdated": "2026-02-28T04:09:24.757Z",
+  "lastUpdated": "2026-06-11T04:09:24.757Z",
   "portfolio": {
     "spot": [
       {
@@ -7,8 +7,16 @@
         "icon": "https://assets.coingecko.com/coins/images/1/standard/bitcoin.png?1696501400",
         "name": "Bitcoin",
         "exchange": "Treasury-1",
-        "amount": 1709216,
-        "avgPrice": 3081
+        "amount": 2281098,
+        "avgPrice": 2714
+      },
+      {
+        "id": "1770310581226",
+        "icon": "https://assets.coingecko.com/coins/images/325/standard/Tether.png?1696501661",
+        "name": "USDT",
+        "exchange": "Treasury-1",
+        "amount": 14803251766,
+        "avgPrice": 0.9097
       }
     ],
     "derivative": [
@@ -17,8 +25,8 @@
         "icon": "https://assets.coingecko.com/coins/images/1/standard/bitcoin.png?1696501400",
         "name": "Bitcoin",
         "exchange": "Vault-1",
-        "size": -838266.4400,
-        "opening": 94691,
+        "size": -139522.0000,
+        "opening": 96578,
         "stop": null,
         "limit": null
       }

@@ -1,7 +1,7 @@
 // ============================================
 // CONFIGURATION
 // ============================================
-const JSON_DATA_URL = 'https://37mpf46fmruz2h6q7ikzimqty6km7lt32rrjgayoj6z352nbr37a.arweave.net/39jy88VkaZ0f0PoVlDITx5TPrnvUYpMDDk-zvumhjv4';
+const JSON_DATA_URL = 'https://fjloid5lccyltwtadkxssbtlmskmyiqg6oqsfv7vsbfv42esou3q.arweave.net/KlbkD6sQsLnaYBqvKQZrZJTMIgbzoSLX9ZBLXmiSdTc';
 
 let portfolioData = null;
 let refreshInterval = null;
@@ -39,7 +39,9 @@ const cryptoIdMap = {
     'uniswap': 'uniswap',
     'uni': 'uniswap',
     'litecoin': 'litecoin',
-    'ltc': 'litecoin'
+    'ltc': 'litecoin',
+    'tether': 'tether',
+    'usdt': 'tether'
 };
 
 // ============================================
