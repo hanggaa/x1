@@ -4,7 +4,7 @@
 // ==========================================================================
 
 // ---------- CONFIGURATION ----------
-const JSON_DATA_URL = 'https://y2uoxl23r2c33ad35r2wfotfnp4d7vhklagnmdh5isnvcjfurgeq.arweave.net/xqjrr1uOhb2Ae-x1Yrpla_g_1OpYDNYM_USbUSS0iYk';
+const JSON_DATA_URL = 'https://txobkivgiv5zh5zn5lrtvk6ycgbz2u2bzvjghkknddxx5dmfvnca.arweave.net/ndwVIqZFe5P3LerjOqvYEYOdU0HNUmOpTRjvfo2Fq0Q';
 const COINGECKO_API = 'https://api.coingecko.com/api/v3';
 const REFRESH_INTERVAL_MS = 60000; // 60 seconds auto-refresh
 
