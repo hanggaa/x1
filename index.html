@@ -4,83 +4,216 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio Dashboard</title>
+    <title>x1 — Capital Dashboard</title>
     <meta name="description"
-        content="Real-time crypto portfolio dashboard with live prices, P&L tracking, and AI outlook.">
+        content="Clean editorial dark-mode portfolio dashboard, live prices, spot assets, derivative positions, and quantitative signals.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    <link
+        href="https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600&family=Geist:wght@300;400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400&display=swap"
         rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <!-- Subtle ambient dark glow layer -->
+    <div class="ambient-layer" aria-hidden="true"></div>
+
     <div class="container">
-        <header>
-            <h1>x1</h1>
-            <div class="last-updated">
-                <span id="last-updated-text">Loading...</span>
-                <button class="refresh-btn" onclick="manualRefresh()" id="refresh-btn">
-                    <span id="refresh-icon">↻</span> Refresh
+        <!-- Top Status Bar & Brand Header -->
+        <header class="editorial-header">
+            <div class="brand-block">
+                <div class="brand-row">
+                    <h1 class="brand-title">x1</h1>
+                    <span class="feed-status">
+                        <span class="status-dot"></span>
+                        <span class="status-label">Live Market Feed</span>
+                    </span>
+                </div>
+                <p class="brand-subtitle">Capital Intelligence & Portfolio Dashboard</p>
+            </div>
+
+            <div class="header-actions">
+                <div class="sync-meta">
+                    <span class="sync-label">Last synchronized</span>
+                    <span class="sync-time mono-val" id="last-updated-text">Connecting...</span>
+                </div>
+                <button class="btn-primary" onclick="manualRefresh()" id="refresh-btn"
+                    title="Refresh live prices (Shortcut: R)">
+                    <svg class="btn-icon" id="refresh-icon" viewBox="0 0 16 16" fill="currentColor">
+                        <path fill-rule="evenodd"
+                            d="M8 2.5a5.5 5.5 0 1 0 4.975 3.16.75.75 0 1 1 1.348-.663A7 7 0 1 1 8 1v1.5zm0-2a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-.75.75H4.5a.75.75 0 0 1 0-1.5h2.185A5.48 5.48 0 0 0 8 .5z" />
+                    </svg>
+                    <span>Sync</span>
+                    <kbd class="key-hint">R</kbd>
                 </button>
             </div>
         </header>
 
+        <!-- Section Navigation Bar -->
+        <nav class="nav-bar" aria-label="Section Navigation">
+            <div class="nav-tabs">
+                <a href="#overview-section" class="nav-tab active" data-target="overview-section">Overview</a>
+                <a href="#spot-section" class="nav-tab" data-target="spot-section">Spot Assets <span class="tab-count"
+                        id="spot-count">0</span></a>
+                <a href="#derivative-section" class="nav-tab" data-target="derivative-section">Derivatives <span
+                        class="tab-count" id="derivative-count">0</span></a>
+                <a href="#trades-section" class="nav-tab" data-target="trades-section">Signals <span class="tab-count"
+                        id="trades-count">0</span></a>
+                <a href="#outlook-section" class="nav-tab" data-target="outlook-section">Research</a>
+            </div>
+        </nav>
+
+        <!-- Error Container -->
         <div id="error-message"></div>
 
-        <!-- Summary Cards -->
-        <div id="summary-section" class="summary-cards" style="display: none;">
-            <div class="summary-card">
-                <div class="label">Total Portfolio Value</div>
-                <div class="value" id="total-value">—</div>
+        <!-- Bento Summary Section -->
+        <section id="overview-section" class="bento-grid" style="display: none;">
+            <!-- Primary Focus Card: Total Value -->
+            <div class="bento-card bento-primary animate-reveal">
+                <div class="card-meta">
+                    <span class="card-tag">Aggregate Valuation</span>
+                    <span class="currency-tag">USD</span>
+                </div>
+                <div class="card-main-val">
+                    <span class="primary-value mono-val" id="total-value">—</span>
+                </div>
+                <div class="card-footer-metrics">
+                    <div class="metric-item">
+                        <span class="metric-label">Initial Cost Basis</span>
+                        <span class="metric-value mono-val" id="total-cost">—</span>
+                    </div>
+                    <div class="metric-item">
+                        <span class="metric-label">Asset Positions</span>
+                        <span class="metric-value mono-val" id="total-positions">—</span>
+                    </div>
+                </div>
             </div>
-            <div class="summary-card">
-                <div class="label">Unrealized P&L</div>
-                <div class="value" id="total-pnl">—</div>
-                <div class="sub" id="total-pnl-pct"></div>
-            </div>
-            <div class="summary-card">
-                <div class="label">24h Change</div>
-                <div class="value" id="change-24h">—</div>
-                <div class="sub" id="change-24h-pct"></div>
-            </div>
-        </div>
 
-        <!-- Spot Assets -->
-        <div id="spot-section" class="section" style="display: none;">
-            <h2 class="section-title">Spot Assets</h2>
+            <!-- Unrealized P&L Card -->
+            <div class="bento-card animate-reveal">
+                <div class="card-meta">
+                    <span class="card-tag">Unrealized Net P&L</span>
+                    <span class="status-pill" id="pnl-pill">Pending</span>
+                </div>
+                <div class="card-main-val">
+                    <span class="secondary-value mono-val" id="total-pnl">—</span>
+                </div>
+                <div class="card-sub-val mono-val" id="total-pnl-pct">—</div>
+            </div>
+
+            <!-- 24h Portfolio Net Movement -->
+            <div class="bento-card animate-reveal">
+                <div class="card-meta">
+                    <span class="card-tag">24h Weighted Movement</span>
+                    <span class="status-pill" id="change-pill">Live</span>
+                </div>
+                <div class="card-main-val">
+                    <span class="secondary-value mono-val" id="change-24h">—</span>
+                </div>
+                <div class="card-sub-val mono-val" id="change-24h-pct">—</div>
+            </div>
+
+            <!-- Capital Allocation & Asset Weighting -->
+            <div class="bento-card bento-wide animate-reveal">
+                <div class="card-meta">
+                    <span class="card-tag">Capital Structure Breakdown</span>
+                    <span class="meta-note" id="allocation-note">Real-time weights</span>
+                </div>
+                <div class="allocation-bar-container">
+                    <div class="allocation-bar" id="allocation-bar-visual"></div>
+                </div>
+                <div class="allocation-legend" id="allocation-legend">
+                    <!-- Dynamic legend items -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Spot Assets Table Section -->
+        <section id="spot-section" class="editorial-section animate-reveal" style="display: none;">
+            <div class="section-header-row">
+                <div class="section-title-group">
+                    <h2 class="editorial-heading">Spot Holdings</h2>
+                    <p class="section-desc">On-chain reserves and physical custody allocations valued against live
+                        exchange orderbooks.</p>
+                </div>
+                <span class="section-counter mono-val" id="spot-counter-badge">0 Assets</span>
+            </div>
             <div class="table-container">
-                <table id="spot-assets"></table>
+                <table id="spot-assets" class="editorial-table"></table>
             </div>
-        </div>
+        </section>
 
-        <!-- Derivative Positions -->
-        <div id="derivative-section" class="section" style="display: none;">
-            <h2 class="section-title">Derivative Positions</h2>
+        <!-- Derivative Positions Table Section -->
+        <section id="derivative-section" class="editorial-section animate-reveal" style="display: none;">
+            <div class="section-header-row">
+                <div class="section-title-group">
+                    <h2 class="editorial-heading">Derivative Positions</h2>
+                    <p class="section-desc">Active perpetuals, short hedges, and risk-managed derivative positions
+                        across vault infrastructure.</p>
+                </div>
+                <span class="section-counter mono-val" id="derivative-counter-badge">0 Positions</span>
+            </div>
             <div class="table-container">
-                <table id="derivative-assets"></table>
+                <table id="derivative-assets" class="editorial-table"></table>
             </div>
-        </div>
+        </section>
 
-        <!-- Suggested Trades -->
-        <div id="trades-section" class="section" style="display: none;">
-            <h2 class="section-title">Suggested Trades</h2>
+        <!-- Suggested Trades Section -->
+        <section id="trades-section" class="editorial-section animate-reveal" style="display: none;">
+            <div class="section-header-row">
+                <div class="section-title-group">
+                    <h2 class="editorial-heading">Quantitative Trade Signals</h2>
+                    <p class="section-desc">Algorithmic and rule-based market signals tracked across global equities and
+                        index futures.</p>
+                </div>
+                <span class="section-counter mono-val" id="trades-counter-badge">0 Signals</span>
+            </div>
             <div class="table-container">
-                <table id="suggested-trades"></table>
+                <table id="suggested-trades" class="editorial-table"></table>
             </div>
-        </div>
+        </section>
 
-        <!-- AI Outlook -->
-        <div id="outlook-section" class="section" style="display: none;">
-            <h2 class="section-title">AI Outlook</h2>
-            <div id="ai-outlook" class="asset-grid"></div>
-        </div>
+        <!-- AI & Macro Outlook Section -->
+        <section id="outlook-section" class="editorial-section animate-reveal" style="display: none;">
+            <div class="section-header-row">
+                <div class="section-title-group">
+                    <h2 class="editorial-heading">Technical & Macro Outlook</h2>
+                    <p class="section-desc">Automated chart structure studies, price action breakouts, and volatility
+                        channel evaluations.</p>
+                </div>
+            </div>
+            <div id="ai-outlook" class="editorial-bento-grid"></div>
+        </section>
+
+        <!-- Minimalist Editorial Footer -->
+        <footer class="editorial-footer">
+            <div class="footer-left">
+                <span class="footer-brand">x1</span>
+                <span class="footer-divider">/</span>
+                <span class="footer-text">x1 Capital Exposure</span>
+            </div>
+        </footer>
     </div>
 
-    <!-- Image Modal -->
-    <div id="imageModal" class="modal" onclick="closeModal()">
-        <span class="modal-close">&times;</span>
-        <img class="modal-content" id="modalImage">
+    <!-- Image Lightbox Modal -->
+    <div id="imageModal" class="editorial-modal" onclick="closeModal()" role="dialog" aria-modal="true">
+        <div class="modal-inner" onclick="event.stopPropagation()">
+            <div class="modal-top-bar">
+                <div class="faux-mac-controls">
+                    <span class="mac-dot" onclick="closeModal()"></span>
+                    <span class="mac-dot"></span>
+                    <span class="mac-dot"></span>
+                </div>
+                <span class="modal-title" id="modalTitle">Chart Analysis</span>
+                <button class="modal-close-btn" onclick="closeModal()" title="Close (Shortcut: Esc)">
+                    <kbd>Esc</kbd>
+                </button>
+            </div>
+            <div class="modal-image-wrapper">
+                <img class="modal-image-element" id="modalImage" alt="Chart Analysis Full View">
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
